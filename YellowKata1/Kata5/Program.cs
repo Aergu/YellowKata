@@ -43,7 +43,7 @@ class Player
 }
 class Program
 {
-            static void AttackEnemy( string action, Enemy enemy, int damage)
+            static void AttackEnemy(string action, Enemy enemy, int damage)
             {
                 Random random = new();
                 int result = random.Next(0, 10);
