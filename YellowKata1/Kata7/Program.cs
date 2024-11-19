@@ -3,18 +3,24 @@
 
 static void attackEnemy(string action, Enemy enemy, int damage)
 {
-    int EnemyHealth = 100;
+    int EnemyHealth = enemy._enemyHealth;
     int modifiedDamage = damage;
     if (EnemyHealth < 1)
     {
+        enemy.takeDamage(modifiedDamage);
         Console.WriteLine($"{enemy.Race} is defeated!");
     }
     else
     {
-        enemy.takeDamage(damage);
+        enemy.takeDamage(modifiedDamage);
     }
 
-    Console.WriteLine($"{action} {enemy.Race} and took {damage} damage! {enemy.Race} now has {enemy._enemyHealth}");
+    Console.WriteLine($"{action} {enemy.Race} and dealt {modifiedDamage} damage! {enemy.Race} now has {enemy._enemyHealth} health!");
+}
+
+static void expGain(int exp, Enemy enemy)
+{
+    exp = 4 * enemy._enemyHealth;
 }
 
 Player player = new();
