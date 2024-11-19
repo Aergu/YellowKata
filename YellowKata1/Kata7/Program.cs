@@ -3,31 +3,29 @@
 
 static void attackEnemy(string action, Enemy enemy, int damage)
 {
-    int EnemyHealth = enemy._enemyHealth;
-    int modifiedDamage = damage;
-    if (EnemyHealth < 1)
+    enemy.takeDamage(damage);
+    Console.WriteLine($"{action} {enemy.type} and dealt {damage} damage! {enemy.type} now has {enemy._enemyHealth} health!");
+    
+    if (enemy._enemyHealth <= 0)
     {
-        enemy.takeDamage(modifiedDamage);
-        Console.WriteLine($"{enemy.Race} is defeated!");
+        Console.WriteLine($"{enemy.type} is defeated!");
+        Console.WriteLine($"Gained {expGain(enemy)} points.");
     }
-    else
-    {
-        enemy.takeDamage(modifiedDamage);
-    }
-
-    Console.WriteLine($"{action} {enemy.Race} and dealt {modifiedDamage} damage! {enemy.Race} now has {enemy._enemyHealth} health!");
 }
 
-static void expGain(int exp, Enemy enemy)
+static int expGain(Enemy enemy)
 {
-    exp = 4 * enemy._enemyHealth;
+    return 4 * enemy._enemyHealth;
 }
 
 Player player = new();
 
-Enemy enemy = new(300, "Golem");
+Enemy enemy = new(250, "Golem");
 
-attackEnemy("Attacked", enemy, damage: player.playerDamageDealt);
+while (enemy._enemyHealth > 0)
+{
+    attackEnemy("Attacked", enemy, damage: player.PlayerDamageDealt);
+}
 
 class Player
 {
@@ -35,32 +33,22 @@ class Player
     private int playerHealth = 300;
     private int playerLevel = 5;
     private int playerExperience = 345;
-    public int playerDamageDealt = 50;
+    public int PlayerDamageDealt = 50;
 }
 
 class Enemy
 {
-    private string type = "Orc";
-    private int enemyHealth = 100;
+    public string type { get; set; }
+    public int _enemyHealth { get; set; }
 
-    public Enemy(int health, string type)
+    public Enemy(int health, string enemyType)
     {
         _enemyHealth = health;
-        Race = type;
-    }
-
-    public string Race
-    {
-        get;
-    }
-
-    public int _enemyHealth
-    {
-        get;
+        type = enemyType;
     }
     public void takeDamage(int damage)
     {
-        enemyHealth -= damage;
+        _enemyHealth -= damage;
     }
 }
 
