@@ -1,13 +1,19 @@
 ﻿Player player = new(400, 5, 60);
-player.Level = -1000;
+player.Level = 1;
 int minLevel = 0;
+
+while (player.Level < 2)
+{
+    int gainedExp = 10;
+    player.GainExp(gainedExp);
+    Console.WriteLine($"{player} gains {gainedExp} experience points.");
+    Console.WriteLine($"The Players level is {player.Level} and has {player.Exp} experience points.");
+}
+
+
 
 public class Player
 {
-    // private int health = 400;
-    // private int level = 5;
-    // private int experience = 50;
-
     
     public Player (int health, int level, int experience)
     {
@@ -20,6 +26,9 @@ public class Player
 
     private int _level;
 
+    private int _exp;
+    
+
     public int Level
     {
         get { return _level; }
@@ -29,10 +38,28 @@ public class Player
         }
     }
 
-    private int _exp
+    public void GainExp(int amountExp)
     {
-        get;
+        Exp += amountExp;
+
+        if (Exp > 100)
+        { 
+            Exp -= 100;
+            Level++;
+            Console.WriteLine("You have leveled up!");
+        }
+
+        
     }
-    
-    
+    public int Exp
+    {
+        get { return _exp; }
+        private set
+        {
+            _exp = Math.Max(value, 0);
+        }
+    }
+
 }
+
+

@@ -9,13 +9,8 @@ static void attackEnemy(string action, Enemy enemy, int damage)
     if (enemy._enemyHealth <= 0)
     {
         Console.WriteLine($"{enemy.type} is defeated!");
-        Console.WriteLine($"Gained {expGain(enemy)} points.");
+        Console.WriteLine($"Gained {enemy.GiveExp()} exp!");
     }
-}
-
-static int expGain(Enemy enemy)
-{
-    return 4 * enemy._enemyHealth;
 }
 
 Player player = new();
@@ -41,14 +36,22 @@ class Enemy
     public string type { get; set; }
     public int _enemyHealth { get; set; }
 
+    private readonly int _maxHealth;
+
     public Enemy(int health, string enemyType)
     {
         _enemyHealth = health;
+        _maxHealth = health;
         type = enemyType;
     }
     public void takeDamage(int damage)
     {
         _enemyHealth -= damage;
+    }
+    
+    public int GiveExp()
+    {
+        return _maxHealth / 5;
     }
 }
 
