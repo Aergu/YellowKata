@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kata8", "Kata8\Kata8.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kata9", "Kata9\Kata9.csproj", "{091CCC75-5E73-4CD3-AFD5-6BF572C09621}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kata10", "Kata10\Kata10.csproj", "{6C31D6FE-9F40-4BBF-AD4C-72103E6B7DC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamKata", "ExamKata\ExamKata.csproj", "{44F43A70-8F5E-4678-A2CA-B8A8033D0EE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +58,13 @@ Global
 		{091CCC75-5E73-4CD3-AFD5-6BF572C09621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{091CCC75-5E73-4CD3-AFD5-6BF572C09621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{091CCC75-5E73-4CD3-AFD5-6BF572C09621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C31D6FE-9F40-4BBF-AD4C-72103E6B7DC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C31D6FE-9F40-4BBF-AD4C-72103E6B7DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C31D6FE-9F40-4BBF-AD4C-72103E6B7DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C31D6FE-9F40-4BBF-AD4C-72103E6B7DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44F43A70-8F5E-4678-A2CA-B8A8033D0EE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F43A70-8F5E-4678-A2CA-B8A8033D0EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F43A70-8F5E-4678-A2CA-B8A8033D0EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F43A70-8F5E-4678-A2CA-B8A8033D0EE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

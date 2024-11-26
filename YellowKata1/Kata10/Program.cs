@@ -1,4 +1,6 @@
-﻿namespace Kata9;
+﻿using System.Threading.Channels;
+
+namespace Kata10;
 
 class Program
 {
@@ -7,7 +9,7 @@ class Program
         Player player = new(200, "Hero", 50);
         Enemy enemy = new(100, "Goblin", 20);
         NPC npc = new("Jack", "Welcome to our Village!");
-        Merchant merchant = new("Tom", new() { "Sword", "Shield", "Potion"});
+        Merchant merchant = new("Tom");
         player.Attack(enemy);
         Console.WriteLine($"{player.Name} attacks {enemy.Type} and deals {player.AttackDamage} damage.");
         Console.WriteLine($"{enemy.Type} takes {player.AttackDamage} damage. Remaining health: {enemy.Health}");
@@ -15,6 +17,9 @@ class Program
         Console.WriteLine($"{merchant.Name}'s inventory:");
         merchant.InventoryList();
 
+        ISpeaker Mspeak = new MerchantSpeak();
+        ISpeaker _speak = new NPCSpeak();
+        
     }
 
     class Player
@@ -73,29 +78,55 @@ class Program
     {
         void InventoryList();
     }
-    class Merchant : IMerchantInventory
+
+    
+    class Merchant : IMerchantInventory 
     {
+        
         public void InventoryList()
         {
-            foreach (var item in Inventory)
-            {
-                Console.WriteLine(item);
-            }
+            Console.WriteLine("Sword, Shield, Potion");
+        }
+
+        public void Speak()
+        {
+            Console.WriteLine("I'm ready to trade!");
         }
         public string Name { get; private set; }
 
-        public List<string> Inventory;
+        public List<string> inventory = new List<string>();
         public string Trade { get; private set; }
 
-        public Merchant(string name, List<string> inventory)
+        public Merchant(string name)
         {
             Name = name;
-            Inventory = inventory;
-
+            List<string>Inventory = inventory;
+            
         }
 
         private string merchantName;
         List<string> _inventory;
+    }
+
+    interface ISpeaker
+    {
+        void Speak();
+    }
+
+    class MerchantSpeak : ISpeaker
+    {
+        public void Speak()
+        {
+            Console.WriteLine("I'm ready to trade!");
+        }
+    }
+
+    class NPCSpeak : ISpeaker
+    {
+        public void Speak()
+        {
+            Console.WriteLine("Welcome to our village!");
+        }
     }
    
 }
