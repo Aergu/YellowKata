@@ -1,12 +1,9 @@
 ﻿namespace ExamKata;
 
+
+
 class Classes
 {
-    static void Main(string[] args)
-    {
-        Console.WriteLine("Hello, World!");
-    }
-
     class Player
     {
         private string name;

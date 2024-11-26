@@ -13,13 +13,11 @@ class Program
         player.Attack(enemy);
         Console.WriteLine($"{player.Name} attacks {enemy.Type} and deals {player.AttackDamage} damage.");
         Console.WriteLine($"{enemy.Type} takes {player.AttackDamage} damage. Remaining health: {enemy.Health}");
-        Console.WriteLine($"{npc.Name} says: {npc.Dialogue}");
         Console.WriteLine($"{merchant.Name}'s inventory:");
         merchant.InventoryList();
+        npc.Speak();
+        merchant.Speak();
 
-        ISpeaker Mspeak = new MerchantSpeak();
-        ISpeaker _speak = new NPCSpeak();
-        
     }
 
     class Player
@@ -61,8 +59,12 @@ class Program
         }
     }
 
-    class NPC
+    class NPC: ISpeaker
     {
+        public void Speak()
+        {
+            Console.WriteLine(Dialogue);
+        }
         public string Name { get; private set; }
         public string Dialogue { get; private set; }
 
@@ -80,7 +82,7 @@ class Program
     }
 
     
-    class Merchant : IMerchantInventory 
+    class Merchant : IMerchantInventory, ISpeaker
     {
         
         public void InventoryList()
@@ -113,20 +115,6 @@ class Program
         void Speak();
     }
 
-    class MerchantSpeak : ISpeaker
-    {
-        public void Speak()
-        {
-            Console.WriteLine("I'm ready to trade!");
-        }
-    }
-
-    class NPCSpeak : ISpeaker
-    {
-        public void Speak()
-        {
-            Console.WriteLine("Welcome to our village!");
-        }
-    }
+   
    
 }
