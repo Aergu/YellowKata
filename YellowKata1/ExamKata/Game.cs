@@ -4,7 +4,7 @@ namespace ExamKata;
 
 public class Game
 {
-    static void Main(string[] args)
+    public void start()
     {
         Console.WriteLine("Enter your name and begin your journey!");
         string input = Console.ReadLine();
@@ -17,8 +17,19 @@ public class Game
             }
             else
             {
-                new Random(1,11)
-                    
+                while (true)
+                {
+                    Random randomEncounter = new Random();
+                    int EncounterType = randomEncounter.Next(0, 3);
+                    if (EncounterType == 0)
+                    {
+                        Classes.Enemy enemy = new Classes.Enemy();
+                        Console.WriteLine("You've encountered an enemy! What will you do?");
+                        
+
+                    }
+                }
+
             }
         }
     }
