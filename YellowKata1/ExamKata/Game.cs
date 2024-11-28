@@ -1,3 +1,4 @@
+using System.IO.Pipes;
 using System.Threading.Channels;
 
 namespace ExamKata;
@@ -21,11 +22,23 @@ public class Game
                 {
                     Random randomEncounter = new Random();
                     int EncounterType = randomEncounter.Next(0, 3);
-                    if (EncounterType == 0)
-                    {
-                        
-                        
 
+                    Encounter encounter;
+                    switch (EncounterType)
+                    {
+                        case 1:
+                            encounter = new Enemy();
+                            break;
+                        case 2:
+                            encounter = new NPC();
+                            break;
+                        case 3:
+                            encounter = new Merchant();
+                            break;
+                    }
+                    if (encounter != null)
+                    {
+                        encounter.Interact();
                     }
                 }
 

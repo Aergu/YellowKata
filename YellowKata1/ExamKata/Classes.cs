@@ -20,34 +20,53 @@ class Classes
             Console.WriteLine("You've encountered an enemy! What will you do?");
         }
         private string type;
-        private int health;
-        private int TakeDamage;
+        public int health { get; set; }
+        public int Attack { get; set; }
+        private int takeDamage;
+
+        public Enemy()
+        {
+            health = 100;
+            Attack = 30;
+        }
     }
 
-    class NPC : ISpeaker
+    class NPC : Encounter
     {
-        public void Speak()
+        private string Name { get; set; }
+
+        public NPC()
+        {
+            Name = "NPC";
+        }
+        public override void Interact()
         {
             Console.WriteLine("Hello! Good luck on your journey!");
         }
         private string Dialogue;
     }
 
-    class Merchant : ISpeaker
+    class Merchant : Encounter
     {
-        public void Speak()
+        public List<string> Inventory { get; set; }
+
+        public Merchant()
+        {
+            Inventory = new List<string> { "Potion", "Sword", "Shield" };
+        }
+        public override void Interact()
         {
             Console.WriteLine("Welcome traveler! Would you like to take a look at my wares?");
+            foreach (var item in Inventory)
+            {
+                Console.WriteLine($"{item}");
+            }
         }
         private string Dialogue;
         private string Trade;
         
     }
-
-    interface ISpeaker
-    {
-        void Speak();
-    }
+    
 
     abstract class Encounter
     {
