@@ -6,19 +6,22 @@ class Classes
 {
     class Player
     {
-        private string name { get; }
+        private string name { get; set; }
         private int health; 
         private int Attack;
         private int heal;
-        public int IDnumber = 1;
+        private int takeDamage;
     }
 
-   class Enemy
+   class Enemy : Encounter
     {
+        public override void Interact()
+        {
+            Console.WriteLine("You've encountered an enemy! What will you do?");
+        }
         private string type;
         private int health;
         private int TakeDamage;
-        public int IDnumber = 2;
     }
 
     class NPC : ISpeaker
@@ -28,7 +31,6 @@ class Classes
             Console.WriteLine("Hello! Good luck on your journey!");
         }
         private string Dialogue;
-        public int IDnumber = 3;
     }
 
     class Merchant : ISpeaker
@@ -39,13 +41,17 @@ class Classes
         }
         private string Dialogue;
         private string Trade;
-
-        public int IDnumber = 4;
+        
     }
 
     interface ISpeaker
     {
         void Speak();
+    }
+
+    abstract class Encounter
+    {
+        public abstract void Interact();
     }
     
 }

@@ -23,8 +23,7 @@ public class Game
                     int EncounterType = randomEncounter.Next(0, 3);
                     if (EncounterType == 0)
                     {
-                        Classes.Enemy enemy = new Classes.Enemy();
-                        Console.WriteLine("You've encountered an enemy! What will you do?");
+                        
                         
 
                     }
