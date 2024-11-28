@@ -1,37 +1,65 @@
 ﻿namespace ExamKata;
 
-
-
-class Classes
+public class Player
 {
-    class Player
-    {
-        private string name { get; set; }
-        private int health; 
-        private int Attack;
-        private int heal;
-        private int takeDamage;
-    }
+    public string Name { get; }
+    public int Health { get; set; }
+    public int Attack { get; }
+    private int heal;
+    private int takeDamage;
 
-   class Enemy : Encounter
+    public Player(string name, int health, int attack)
+    {
+        Name = name;
+        Health = health;
+        Attack = attack;
+    }
+    
+    public void AttackEnemy(Enemy enemy, int damage)
+    {
+        int damagedealt = damage;
+        enemy.TakeDamage(damagedealt);
+    }
+    
+    public void HealPlayer(int healAmount)
+    {
+        Health += healAmount;
+
+    }
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+    }
+}
+
+   public class Enemy : Interactable
     {
         public override void Interact()
         {
-            Console.WriteLine("You've encountered an enemy! What will you do?");
         }
-        private string type;
-        public int health { get; set; }
-        public int Attack { get; set; }
-        private int takeDamage;
-
-        public Enemy()
+        public int Health { get; set; }
+        public int Attack { get; }
+        public string Type { get; }
+        
+        public Enemy(string type, int health, int attack)
         {
-            health = 100;
-            Attack = 30;
+            Type = type;
+            Health = health;
+            Attack = attack;
+        }
+        
+        public void AttackPlayer(Player player)
+        {
+            player.TakeDamage(Attack);
+        }
+        
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
         }
     }
 
-    class NPC : Encounter
+    class NPC : Interactable
     {
         private string Name { get; set; }
 
@@ -41,12 +69,12 @@ class Classes
         }
         public override void Interact()
         {
-            Console.WriteLine("Hello! Good luck on your journey!");
+            Console.WriteLine($"Hello! Good luck on your journey!");
         }
         private string Dialogue;
     }
 
-    class Merchant : Encounter
+    class Merchant : Interactable
     {
         public List<string> Inventory { get; set; }
 
@@ -66,11 +94,9 @@ class Classes
         private string Trade;
         
     }
-    
 
-    abstract class Encounter
+    public abstract class Interactable
     {
         public abstract void Interact();
     }
     
-}
